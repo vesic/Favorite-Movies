@@ -30,19 +30,52 @@
         </select>
     </div>
         
-        <ul class="list-group">
-            <li class="list-group-item" ng-repeat="movie in main.movies | filter:main.searchMovie | orderBy:main.order">
-    
-                <h4 class="list-group-item-heading">
-                    <span class="glyphicon glyphicon-star" ng-if="movie.favorite"></span> 
-                        {{movie.title}} <span class="badge pull-right">{{ movie.year }}</span>
-                </h4>
-                <p class="list-group-item-text">
-                    {{ movie.plot }}
-                </p>
-    
-            </li>
-        </ul>
+    <div class="row">
+        <div class="col-sm-6">
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="movie in main.movies | filter:main.searchMovie | orderBy:main.order">
+        
+                    <h4 class="list-group-item-heading">
+                        <span class="glyphicon glyphicon-star" ng-if="movie.favorite"></span> 
+                            {{movie.title}} <span class="badge pull-right">{{ movie.year }}</span>
+                    </h4>
+                    <p class="list-group-item-text">
+                        {{ movie.plot }}
+                    </p>
+        
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-6">
+            <h3>Add New Movie</h3>
+            <form name="main.addMovieForm" class="form" ng-submit="main.addMovie()">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input class="form-control" ng-model="main.new.title" required />
+                </div>
+                
+                <div class="form-group">
+                    <label>Year</label>
+                    <input type="number" min="1900" max="2030" class="form-control" ng-model="main.new.year" required />
+                </div>
+                
+                <div class="form-group">
+                    <label>Plot</label>
+                    <textarea class="form-control" rows="10" ng-model="main.new.plot"></textarea>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label>Favorite: <input type="checkbox" ng-model="main.new.favorite" /></label>
+                    </div>
+                    <div class="col-xs-6">
+                        <button class="btn btn-success pull-right"><span class="glyphicon glyphicon-plus-sign"></span> Add</button>
+                    </div>
+                </div>
+                
+            </form>
+            
+        </div>
+    </div>
         
   </div>
 </div>
