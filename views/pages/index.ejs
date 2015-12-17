@@ -7,7 +7,32 @@
 
 <div class="container">
   <div ng-controller="mainCtrl as main">
-      <h1>{{ 'Works!' }}</h1>
+      
+    <h1>{{main.title}}</h1>
+    
+    <div class="input-group">
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-search"></span>
+        </span>
+        <input type="text" class="form-control" ng-model="main.searchMovie">
+    </div>
+    
+    
+    <h3>A list of Movies</h3>
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="movie in main.movies | filter:main.searchMovie">
+    
+                <h4 class="list-group-item-heading">
+                    <span class="glyphicon glyphicon-star" ng-if="movie.favorite"></span> 
+                        {{movie.title}} <span class="badge pull-right">{{ movie.year }}</span>
+                </h4>
+                <p class="list-group-item-text">
+                    {{ movie.plot }}
+                </p>
+    
+            </li>
+        </ul>
+        
   </div>
 </div>
 
